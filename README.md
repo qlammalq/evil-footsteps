@@ -28,7 +28,7 @@ this addon is intended to be installed via the steam workshop. however, for deve
 
 1.  clone this repository or download the source files.
 2.  place the `evil_footsteps` folder (containing `addon.json` and the `lua` folder) into your `garrysmod/addons/` directory.
-3.  ensure the [code]addon.json[/code] tags and type match the compiler's requirements for successful packing.
+3.  ensure the addon.jsontags and type match the compiler's requirements for successful packing.
 
 ## configuration
 
