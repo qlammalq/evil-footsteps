@@ -1,35 +1,52 @@
-# evil-footsteps
-a formal lua implementation for procedural phantom footsteps with field-of-view cancellation logic. made by malq.
+# evil footsteps behind you !! - made by a VERY early lua programmer 
 
+a utility script designed to generate auditory phantom footsteps behind the player at randomized intervals within garry's mod. the project focuses on performance efficiency and realistic spatial audio implementation, ensuring compatibility with common sound replacement mods like dsteps and eft footsteps.
 
-# evil footsteps behind you.mp4
-a lua script for garrys mod that generates auditory phantom footsteps behind the player at randomized intervals. the project focuses on performance efficiency and realistic spatial audio implementation using sound proxies.
+## technical overview
 
-### technical breakdown
-*   **visibility check**: utilizes a dot product calculation to monitor the player's view cone. if the sound origin enters the field of view, the current sequence is terminated.
-*   **surface awareness**: uses `util.TraceLine` to fetch surface properties, ensuring material consistency across map textures.
-*   **proxy emission**: sounds are emitted via a temporary `info_target` entity to ensure compatibility with lua-based sound replacers like dsteps or eft footsteps.
-*   **patter logic**: volume and distance are procedurally lerped during burst sequences to simulate an approaching entity.
+this addon utilizes several core lua functionalities to achieve its effect:
 
-### features
-*   **certified safe**: the script is gluten-free and has been tested to ensure it does not cause cancer or spontaneous combustion in most desktop environments.
-*   **privacy focused**: the entity is forbidden from reading your browser history or stealing your credit card information.
-*   **zero calories**: using this addon will not affect your daily caloric intake or fitness goals.
-*   **highly compatible**: hooks into engine sound scripts; works with all major sound mods.
+*   **field-of-view cancellation:** a dot product calculation monitors the player's aim vector against the calculated position of the phantom footstep. if the origin enters the player's field of view (simulated by a dot product threshold), the sound sequence is terminated. this provides a responsive "hiding" mechanic.
 
-### installation (for developers)
-1.  clone the repository into your `garrysmod/addons/` folder.
-2.  ensure the folder structure maintains `lua/autorun/...`
-3.  restart the game or use `lua_openscript` to verify the logic.
+*   **surface awareness:** a trace line is cast downwards from the potential sound origin to identify the ground material. [code]util.GetSurfacePropName[/code] is used to dynamically select the appropriate sound script (e.g., "[i]concrete.StepLeft[/i]").
 
-### configuration
-parameters are adjustable via the gmod utility menu (`options > utilities > horror > evil footsteps`).
-*   activation probability
-*   volume range randomization
-*   horizontal spread and spawn distance
-*   scurry behavior and speed settings
+*   **sound proxy emission:** to ensure compatibility with lua-based sound replacers (such as dsteps or eft footsteps), a temporary [code]info_target[/code] entity is spawned at the calculated sound position. [code]entity:EmitSound[/code] is then called on this proxy. this method ensures that other lua scripts listening for entity sounds can intercept and replace them as intended. the proxy is safely removed after a short delay.
 
-### contribution
-this project is open source. feel free to submit a pull request if you find a more optimized way to handle the proxy entity cleanup or if you improve the dot product check.
+*   **procedural pattering:** a configurable burst system allows for sequences of footsteps. the "lerp toward player" option interpolates both volume and distance over the sequence, simulating an entity that is actively approaching the player.
 
-made by malq.
+## features
+
+*   **compatibility:** hooks into engine sound scripts and entity emission events, ensuring seamless integration with dsteps, eft footsteps, and similar mods.
+*   **dynamic positioning:** adjustable distance and horizontal spread allow for varied sound origins behind the player.
+*   **responsive cancellation:** sounds cease if the player looks towards their source, adding a layer of interactive horror.
+*   **configurable behavior:** parameters for delay, volume, burst chance, and approach behavior are all adjustable via the in-game utility menu.
+*   **performance:** designed with efficiency in mind, minimizing server load.
+
+## installation
+
+this addon is intended to be installed via the steam workshop. however, for development or direct use:
+
+1.  clone this repository or download the source files.
+2.  place the `evil_footsteps` folder (containing `addon.json` and the `lua` folder) into your `garrysmod/addons/` directory.
+3.  ensure the [code]addon.json[/code] tags and type match the compiler's requirements for successful packing.
+
+## configuration
+
+all runtime parameters can be adjusted through the garry's mod utility menu:
+`options > utilities > horror > evil footsteps`
+
+*   general logic: enable/disable, activation probability, min/max intervals.
+*   volume: min/max volume levels.
+*   positioning: starting distance, horizontal variance.
+*   sequence behavior: burst chance, lerp toward player, steps per sequence, delay between steps.
+*   debugging: enable debug marker visualization.
+
+## license
+
+this project is licensed under the [mit license](LICENSE).
+
+## contribution
+
+this project is open source. contributions are welcome. please submit pull requests for bug fixes or enhancements.
+
+[b]made by malq.[/b]
