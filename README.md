@@ -1,4 +1,4 @@
-evil footsteps behind you !!
+evil footsteps behind you
 made by a VERY early lua programmer
 
 a utility script designed to generate auditory phantom footsteps behind the player at randomized intervals within garry's mod. the project focuses on performance efficiency and realistic spatial audio implementation, ensuring compatibility with common sound replacement mods like dsteps and eft footsteps.
@@ -8,9 +8,9 @@ this addon utilizes several core lua functionalities to achieve its effect:
 
     field-of-view cancellation: a dot product calculation monitors the player's aim vector against the calculated position of the phantom footstep. if the origin enters the player's field of view (simulated by a dot product threshold), the sound sequence is terminated. this provides a responsive "hiding" mechanic.
 
-    surface awareness: a trace line is cast downwards from the potential sound origin to identify the ground material. util.GetSurfacePropName is used to dynamically select the appropriate sound script (e.g., "concrete.StepLeft").
+    surface awareness: a trace line is cast downwards from the potential sound origin to identify the ground material. util.GetSurfacePropName is used to dynamically select the appropriate sound script (e.g., concrete.StepLeft).
 
-    sound proxy emission: to ensure compatibility with lua-based sound replacers (such as dsteps or eft footsteps), a temporary info_target entity is spawned at the calculated sound position. entity:EmitSound is then called on this proxy. this method ensures that other lua scripts listening for entity sounds can intercept and replace them as intended. the proxy is safely removed after a short delay.
+    sound proxy emission: to ensure compatibility with lua-based sound replacers (such as dsteps or eft footsteps), a temporary info_target entity is spawned at the calculated sound position. Entity:EmitSound is then called on this proxy. this method ensures that other lua scripts listening for entity sounds can intercept and replace them as intended. the proxy is safely removed after a short delay.
 
     procedural pattering: a configurable burst system allows for sequences of footsteps. the "lerp toward player" option interpolates both volume and distance over the sequence, simulating an entity that is actively approaching the player.
 
@@ -38,7 +38,8 @@ this addon is intended to be installed via the steam workshop. however, for deve
 
 configuration
 
-all runtime parameters can be adjusted through the garry's mod utility menu: options > utilities > horror > evil footsteps
+all runtime parameters can be adjusted through the garry's mod utility menu:
+options > utilities > horror > evil footsteps
 
     general logic: enable/disable, activation probability, min/max intervals.
 
@@ -52,7 +53,7 @@ all runtime parameters can be adjusted through the garry's mod utility menu: opt
 
 license
 
-this project is licensed under the mit license.
+this project is licensed under the mit license. see the LICENSE file for more details.
 contribution
 
 this project is open source. contributions are welcome. please submit pull requests for bug fixes or enhancements.
