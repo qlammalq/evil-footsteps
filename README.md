@@ -1,1 +1,4 @@
-dont look here go look at the ai desc of the workshop desc. also the code was NOT made by ai, and thats serious. theres plenty of fucking errors in that shit for it to be ai. i had a few weeks to work on it, so there are a ton of comments and shit. i am more incompetent to write desc with ai then actual code. ai code is shit.
+a mod i'm making in garrys mod. code and stuff is here, alongside with an MIT license. if you know how to install it, install it manually. i'm too lazy to write how to install it, look for a tutorial or something lol.
+
+
+this is my first mod ever, and one of my first lua projects ever, code is sloppy and weird, go wild and make whatever you want i don't care. ai was not used.
